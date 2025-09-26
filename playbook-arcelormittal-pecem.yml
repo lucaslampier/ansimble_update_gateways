@@ -1,0 +1,41 @@
+---
+- name: move files GW000094
+  hosts: myhosts
+  become: true  # se precisar de sudo
+  tasks:
+  - name: Move ultronline.py
+    ansible.builtin.copy:
+      src: /home/lucas/Servidores/server_v4/Server/ultronline.py
+      dest: /home/gateway/Servidores/server_v4/Server/ultronline.py
+      owner: root
+      group: root
+      mode: '0644'
+  
+  - name: Move servidor_main.py
+    ansible.builtin.copy:
+      src: /home/lucas/Servidores/server_v4/Server/servidor_main.py
+      dest: /home/gateway/Servidores/server_v4/Server/servidor_main.py
+      owner: root
+      group: root
+      mode: '0644'
+  
+  - name: Move energy_analysis.py
+    ansible.builtin.copy:
+      src: /home/lucas/Servidores/server_v4/Server/energy_analysis.py
+      dest: /home/gateway/Servidores/server_v4/Server/energy_analysis.py
+      owner: root
+      group: root
+      mode: '0644'
+  
+  - name: Move parametros_ultronline.json
+    ansible.builtin.copy:
+      src: /home/lucas/RepositorioProjetosCompletos/ansimble_update_gateways/parametros_ultronline_arcelormittal-pecem.json
+      dest: /home/gateway/Servidores/server_v4/Server/parametros_ultronline.json
+      owner: root
+      group: root
+      mode: '0644'
+  
+  - name: Reiniciar ultronlink_server
+    ansible.builtin.service:
+      name: ultronlink_server
+      state: restarted
