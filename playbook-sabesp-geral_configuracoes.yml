@@ -1,0 +1,17 @@
+---
+- name: move files GW000104
+  hosts: myhosts
+  become: true  # se precisar de sudo
+  tasks:  
+  - name: Move parametros_ultronline.json
+    ansible.builtin.copy:
+      src: /home/lucas/RepositorioProjetosCompletos/ansimble_update_gateways/parametros_ultronline_sabesp-geral.json
+      dest: /home/gateway/Servidores/server_v4/Server/parametros_ultronline.json
+      owner: root
+      group: root
+      mode: '0644'
+  
+  - name: Reiniciar ultronlink_server
+    ansible.builtin.service:
+      name: ultronlink_server
+      state: restarted
