@@ -1,5 +1,5 @@
 ---
-- name: move files GW000104
+- name: move files
   hosts: myhosts
   become: true  # se precisar de sudo
   tasks:
